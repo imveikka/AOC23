@@ -9,7 +9,7 @@ Never look down on regex.
 from re import sub
 
 if __name__ == "__main__":
-    with open('input', 'r') as buf:
+    with open('./bigboy', 'r') as buf:
         lines = buf.read().splitlines()
     no_chars = map(lambda line: sub('[a-z]', '', line), lines)
     numbers = map(lambda line: str(line[0] * 2 if len(line) == 1 else line[0] + line[-1]), no_chars)

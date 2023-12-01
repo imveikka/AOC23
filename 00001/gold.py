@@ -8,7 +8,7 @@ from re import sub
 
 if __name__ == "__main__":
 
-    with open('input', 'r') as buf:
+    with open('./bigboy', 'r') as buf:
         lines = buf.read().splitlines()
 
     numbers = (('one', 'o1e'), ('two', 't2o'), ('three', 't3e'),
