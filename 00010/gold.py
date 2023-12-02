@@ -7,7 +7,7 @@ Can't bother to combine these solution.
 """
 import numpy as np
 
-buffer = np.loadtxt('./input', delimiter=':', dtype=str)
+buffer = np.loadtxt('./ctkbqj.txt', delimiter=':', dtype=str)
 
 def power(sets):
     table = {'red': 0, 'green': 0, 'blue': 0}
@@ -19,7 +19,7 @@ def power(sets):
             table[color] = max(int(number), table[color])
     return np.prod(list(table.values()))
 
-games = np.arange(len(buffer)) + 1
+games = np.arange(len(buffer)) # + 1 # add if not bigboy
 
 foo = sum(map(power, buffer[:, 1]))
 

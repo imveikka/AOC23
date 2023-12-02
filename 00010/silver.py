@@ -9,7 +9,7 @@ Sorry guys I'm late
 
 import numpy as np
 
-buffer = np.loadtxt('./input', delimiter=':', dtype=str)
+buffer = np.loadtxt('./ctkbqj.txt', delimiter=':', dtype=str)
 
 def is_it_possible(sets, colors=np.array([12, 13, 14])):
     table = {'red': 0, 'green': 0, 'blue': 0}
@@ -21,7 +21,7 @@ def is_it_possible(sets, colors=np.array([12, 13, 14])):
             table[color] = max(int(number), table[color])
     return np.all(np.array(list(table.values())) <= colors)
 
-games = np.arange(len(buffer)) + 1
+games = np.arange(len(buffer)) # + 1 # add if not bigboy
 
 foo = list(map(is_it_possible, buffer[:, 1]))
 
