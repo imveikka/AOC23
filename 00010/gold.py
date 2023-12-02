@@ -17,7 +17,7 @@ def power(sets):
         for reveal in reveals:
             number, color = reveal[1:].split()
             table[color] = max(int(number), table[color])
-    return np.prod(np.array(list(table.values())))
+    return np.prod(list(table.values()))
 
 games = np.arange(len(buffer)) + 1
 
