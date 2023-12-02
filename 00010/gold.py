@@ -7,7 +7,7 @@ Can't bother to combine these solution.
 """
 import numpy as np
 
-buffer = np.loadtxt('./ctkbqj.txt', delimiter=':', dtype=str)
+buffer = np.loadtxt('./bigboy', delimiter=':', dtype=str)
 
 def power(sets):
     table = {'red': 0, 'green': 0, 'blue': 0}

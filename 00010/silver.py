@@ -9,7 +9,7 @@ Sorry guys I'm late
 
 import numpy as np
 
-buffer = np.loadtxt('./ctkbqj.txt', delimiter=':', dtype=str)
+buffer = np.loadtxt('./bigboy', delimiter=':', dtype=str)
 
 def is_it_possible(sets, colors=np.array([12, 13, 14])):
     table = {'red': 0, 'green': 0, 'blue': 0}
