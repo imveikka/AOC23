@@ -1,18 +1,29 @@
 """
---- Day 1: Trebuchet?! ---
+--- Day 2: Cube Conundrum ---
 
-It's the most wonderful time of the year!
+Sorry guys I'm late
+(that's my secret)
 
-Never look down on regex.
+@imveikka
 """
 
-from re import sub
+import numpy as np
 
-if __name__ == "__main__":
-    with open('./bigboy', 'r') as buf:
-        lines = buf.read().splitlines()
-    no_chars = map(lambda line: sub('[a-z]', '', line), lines)
-    numbers = map(lambda line: str(line[0] * 2 if len(line) == 1 else line[0] + line[-1]), no_chars)
-    result = sum(map(lambda line: int(line), numbers))
-    print(result)
+buffer = np.loadtxt('./bigboy', delimiter=':', dtype=str)
+
+def is_it_possible(sets, colors=np.array([12, 13, 14])):
+    table = {'red': 0, 'green': 0, 'blue': 0}
+    sets = sets.split(';')
+    for cubes in sets:
+        reveals = cubes.split(',')
+        for reveal in reveals:
+            number, color = reveal[1:].split()
+            table[color] = max(int(number), table[color])
+    return np.all(np.array(list(table.values())) <= colors)
+
+games = np.arange(len(buffer)) # + 1 # add if not bigboy
+
+foo = list(map(is_it_possible, buffer[:, 1]))
+
+print(np.sum(games[foo]))
 

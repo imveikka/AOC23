@@ -1,25 +1,27 @@
 """
 --- Part Two ---
 
-It's a feature, not a bug.
+Can't bother to combine these solution.
+
+@imveikka
 """
+import numpy as np
 
-from re import sub
+buffer = np.loadtxt('./bigboy', delimiter=':', dtype=str)
 
-if __name__ == "__main__":
+def power(sets):
+    table = {'red': 0, 'green': 0, 'blue': 0}
+    sets = sets.split(';')
+    for cubes in sets:
+        reveals = cubes.split(',')
+        for reveal in reveals:
+            number, color = reveal[1:].split()
+            table[color] = max(int(number), table[color])
+    return np.prod(list(table.values()))
 
-    with open('./bigboy', 'r') as buf:
-        lines = buf.read().splitlines()
+games = np.arange(len(buffer)) # + 1 # add if not bigboy
 
-    numbers = (('one', 'o1e'), ('two', 't2o'), ('three', 't3e'),
-               ('four', '4'), ('five', '5e'), ('six', '6'),
-               ('seven', '7n'), ('eight', 'e8t'), ('nine', 'n9e'))
-    
-    for a, b in numbers:
-        lines = list(map(lambda line: line.replace(a, b), lines))
+foo = sum(map(power, buffer[:, 1]))
 
-    no_chars = map(lambda line: sub('[a-z]', '', line), lines)
-    numbers = map(lambda line: str(line[0] * 2 if len(line) == 1 else line[0] + line[-1]), no_chars)
-    result = sum(map(lambda line: int(line), numbers))
-    print(result)
+print(foo)
 

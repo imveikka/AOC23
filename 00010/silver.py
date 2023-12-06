@@ -1,29 +1,36 @@
 """
---- Day 2: Cube Conundrum ---
+--- Day 3: Gear Ratios ---
 
-Sorry guys I'm late
-(that's my secret)
+Come on guys this is only a third day!
 
 @imveikka
 """
 
 import numpy as np
+from scipy.spatial import distance_matrix
 
-buffer = np.loadtxt('./bigboy', delimiter=':', dtype=str)
+with open('./bigboy', 'r') as buf:
+    schematic = np.array([list(line) for line in buf.read().splitlines()])
 
-def is_it_possible(sets, colors=np.array([12, 13, 14])):
-    table = {'red': 0, 'green': 0, 'blue': 0}
-    sets = sets.split(';')
-    for cubes in sets:
-        reveals = cubes.split(',')
-        for reveal in reveals:
-            number, color = reveal[1:].split()
-            table[color] = max(int(number), table[color])
-    return np.all(np.array(list(table.values())) <= colors)
+digits = np.char.isdigit(schematic)
+dots = schematic == '.'
+symbols = ~(digits + dots)
 
-games = np.arange(len(buffer)) # + 1 # add if not bigboy
+digits_coords = np.vstack(np.where(digits)).T
+symbols_coords = np.vstack(np.where(symbols)).T
 
-foo = list(map(is_it_possible, buffer[:, 1]))
+schematic[symbols] = '.'
 
-print(np.sum(games[foo]))
+sep, result = 0, 0
+for row in schematic:
+    line = ''.join(row)
+    for digit in filter(str.isdigit, line.split('.')):
+        coords = digits_coords[sep: sep+len(digit)]
+        sep += len(digit)
+        dists = distance_matrix(coords, symbols_coords)
+        if np.any(dists < 1.5):
+            result += int(digit) 
+    
+print(result)
+
 
