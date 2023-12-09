@@ -1,3 +1,11 @@
+"""
+--- Day 8: Haunted Wasteland ---
+
+See map.png for visualization of the map.
+
+@imveikka
+"""
+
 from sys import argv
 import numpy as np
 
