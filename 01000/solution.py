@@ -15,7 +15,6 @@ def diffs(row):
     while row.any():
         yield row[0], row[-1]
         row = np.diff(row) 
-    yield row[0], row[-1]
 
 silver = 0
 gold = 0
